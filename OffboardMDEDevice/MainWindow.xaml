@@ -61,7 +61,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="MWSGuardian Offboard MDE Device" FontSize="16" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Center" Margin="10"/>
+            <TextBlock Grid.Row="0" Text="Offboard MDE Device" FontSize="16" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Center" Margin="10"/>
             <Image Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Source=".\exit_icon.png" Width="20" Height="20" MouseLeftButtonDown="ExitImage_MouseLeftButtonDown" Cursor="Hand"/>
             <TextBlock x:Name="PromptTextBlock" Grid.Row="1" Padding="10" TextWrapping="Wrap" FontSize="14" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Center" Text="Click Sign in to begin" TextAlignment="Center"/>
             <TextBlock x:Name="SelectionTextBlock" Grid.Row="3" Padding="10" TextWrapping="Wrap" FontSize="14" FontWeight="Bold" Foreground="Black" Text="Customer:" Visibility="Visible"/>
