@@ -26,8 +26,8 @@ namespace OffboardMDEDevice
     {
         private string? appSecret;
         private string? appRefreshToken;
-        private string appClientId = "79d5aeee-e34d-434c-9c4c-a25f18f844b9";
-        private string appTenantId = "3376fd25-ade9-423f-99d5-058e6d4214c3";
+        private string appClientId = "";
+        private string appTenantId = "";
         private List<Customer>? allCustomers;
         private List<Device>? allDevices;
         private string? signedInUsername;
@@ -81,7 +81,7 @@ namespace OffboardMDEDevice
                 new KeyValuePair<string, string>("client_secret", appSecret)
             });
 
-            var response = await httpClient.PostAsync("https://login.microsoftonline.com/3376fd25-ade9-423f-99d5-058e6d4214c3/oauth2/token", content);
+            var response = await httpClient.PostAsync("https://login.microsoftonline.com//oauth2/token", content);
             response.EnsureSuccessStatusCode();
 
             var responseContent = await response.Content.ReadAsStringAsync();
@@ -106,7 +106,7 @@ namespace OffboardMDEDevice
         }
         private async Task<string> RetrieveSecretFromKeyVaultAsync(string secretName, InteractiveBrowserCredential credential)
         {
-            var secretClient = new SecretClient(new Uri("https://abt-csp-keyvault.vault.azure.net/"), credential);
+            var secretClient = new SecretClient(new Uri(""), credential);
             KeyVaultSecret secret = await secretClient.GetSecretAsync(secretName);
             return secret.Value;
         }
@@ -377,8 +377,8 @@ namespace OffboardMDEDevice
 
                         signedInUsername = DecodeToken(tokenResponse.Token);
 
-                        appSecret = await RetrieveSecretFromKeyVaultAsync("79d5aeee-e34d-434c-9c4c-a25f18f844b9-MortgageWorkSpace-Secret", credential);
-                        appRefreshToken = await RetrieveSecretFromKeyVaultAsync("mwsportal-abtcsp-onmicrosoft-com-mortgageworkspace", credential);
+                        appSecret = await RetrieveSecretFromKeyVaultAsync("", credential);
+                        appRefreshToken = await RetrieveSecretFromKeyVaultAsync("", credential);
 
                         var cspToken = await GetCspTokenAsync(appRefreshToken, appSecret);
                         return await GetCspCustomersAsync(cspToken);
